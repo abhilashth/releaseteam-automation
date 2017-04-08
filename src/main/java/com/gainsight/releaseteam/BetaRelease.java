@@ -63,7 +63,7 @@ public class BetaRelease {
         //final upload page
         getfd().input(xpath(FINAL_BETA_UPLOAD_BUTTON)).waitUntil(45).ifElementIsNotDisplayed().click();
         CoreUtils.getscreenshot("Image-After-Beta-Upload", driver);
-
+        Log.info("Beta uplaod successfully with version  .... " + finalVersion);
     }
 
 
