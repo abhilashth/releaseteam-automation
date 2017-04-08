@@ -105,4 +105,3 @@ public class BetaRelease {
         PropertyConfigurator.configure(confDir + "/conf/log4j.properties");
     }
 }
-

@@ -1,19 +1,15 @@
 package com.gainsight.releaseteam;
 
-import com.gainsight.exceptions.AutomationException;
 import com.gainsight.pageobject.core.fluent.FluentDriver;
+import com.gainsight.releaseteam.utils.CoreUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.*;
 import java.lang.invoke.MethodHandles;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -45,7 +41,7 @@ public class PushUpgrades {
         List<String> orgs = getOrgDetails().stream().distinct().collect(Collectors.toList());
         System.out.println("Total Org Id's list is " + orgs);
         loadPropertiesfile();
-        driver = getChromeDriver();
+        driver = CoreUtils.getChromeDriver();
         getfd().get(properties.getProperty("sfdcurl"));
         getfd().element(id("username")).waitUntil(30).ifElementIsNotDisplayed().clear().sendKeys(properties.getProperty("sfdcusername"));
         getfd().element(id("password")).clear().sendKeys(properties.getProperty("sfdcpassword"));
@@ -110,22 +106,6 @@ public class PushUpgrades {
             orgs.add(array[0].trim());
         }
         return orgs;
-    }
-
-    private static WebDriver getChromeDriver() {
-        String chromeDriverLocation = System.getProperty("webdriver.chrome.driver");
-        if (StringUtils.isEmpty(chromeDriverLocation)) {
-            throw new IllegalArgumentException("webdriver.chrome.driver property should not be null");
-        }
-        File chromeDriverExecutable = new File(chromeDriverLocation);
-        if (!chromeDriverExecutable.exists()) {
-            throw new AutomationException("webdriver.chrome.driver not found: " + chromeDriverLocation);
-        }
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        capabilities.setCapability("chrome.switches", Collections.singletonList("--start-maximized"));
-        driver = new ChromeDriver(capabilities);
-        driver.manage().window().maximize();
-        return driver;
     }
 
     private static FluentDriver getfd() {
