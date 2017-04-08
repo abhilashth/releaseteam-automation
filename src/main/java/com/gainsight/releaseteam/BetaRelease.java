@@ -48,7 +48,7 @@ public class BetaRelease {
         getfd().element(id("username")).waitUntil(30).ifElementIsNotDisplayed().clear().sendKeys(properties.getProperty("sfdcusername"));
         getfd().element(id("password")).clear().sendKeys(properties.getProperty("sfdcpassword"));
         getfd().element(id("Login")).click();
-        Thread.sleep(5000); // waiting for things to get settled
+        Thread.sleep(5000 * 2); // waiting for things to get settled
         Log.info("Opening url for beta upload " + sfdcendpoint);
         getfd().get(sfdcendpoint);
         CoreUtils.getscreenshot("Image-After-Opening-Url", driver);
