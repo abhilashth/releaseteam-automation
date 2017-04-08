@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.gainsight:testdriver:1.8.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/gainsight/testdriver/1.8.1-SNAPSHOT/testdriver-1.8.1-20161227.132231-9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/gainsight/testdriver/1.8.1-SNAPSHOT/testdriver-1.8.1-20161227.132231-9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/gainsight/testdriver/1.8.1-SNAPSHOT/testdriver-1.8.1-20161227.132231-9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
