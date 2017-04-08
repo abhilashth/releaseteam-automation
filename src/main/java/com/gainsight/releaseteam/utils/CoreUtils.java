@@ -50,6 +50,12 @@ public class CoreUtils {
         FileUtils.copyFile(scrFile, new File("target/" + screenshotName + ".png"));
     }
 
+    public static void quitDriver() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
 
 }
 
