@@ -2,6 +2,7 @@ package com.gainsight.releaseteam;
 
 import com.gainsight.exceptions.AutomationException;
 import com.gainsight.pageobject.core.fluent.FluentDriver;
+import com.gainsight.releaseteam.utils.Screenshot;
 import com.gainsight.sfdc.SalesforceConnector;
 import com.gainsight.sfdc.beans.SFDCInfo;
 import com.gainsight.testdriver.Log;
@@ -47,7 +48,7 @@ public class BetaRelease {
 
         loadPropertiesfile();
         getSalesforceConnection();
-      //  driver = getChromeDriver();
+        //  driver = getChromeDriver();
         driver = getFirefoxDriver();
         getfd().get(properties.getProperty("sfdcurl"));
         getfd().element(id("username")).waitUntil(30).ifElementIsNotDisplayed().clear().sendKeys(properties.getProperty("sfdcusername"));
@@ -56,6 +57,7 @@ public class BetaRelease {
         Thread.sleep(5000); // waiting for things to get settled
         Log.info("Opening url for beta upload " + sfdcendpoint);
         getfd().get(sfdcendpoint);
+        Screenshot.takeScreenShot(getfd());
         getfd().input(xpath(UPLOAD_BUTTON)).waitUntil(45).ifElementIsNotDisplayed().click();
         String versionNumber = getfd().element(xpath(UPLOAD_VERSION_NUMBER)).waitUntil(600).ifElementIsNotDisplayed().getText().trim();
         Calendar calendar = Calendar.getInstance();
@@ -65,7 +67,7 @@ public class BetaRelease {
         Log.info("=============Final version to upload is =========== " + finalVersion);
         getfd().element(xpath(VERSION_NAME_INPUT)).waitUntil(30).ifElementIsNotDisplayed().clear().sendKeys(finalVersion);
         //final upload page
-        //   getfd().input(xpath(FINAL_BETA_UPLOAD_BUTTON)).waitUntil(45).ifElementIsNotDisplayed().click();
+        getfd().input(xpath(FINAL_BETA_UPLOAD_BUTTON)).waitUntil(45).ifElementIsNotDisplayed().click();
 
     }
 
