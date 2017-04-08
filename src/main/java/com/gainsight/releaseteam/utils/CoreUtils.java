@@ -47,9 +47,7 @@ public class CoreUtils {
 
     public static void getscreenshot(String screenshotName, WebDriver driver) throws Exception {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        //The below method will save the screen shot in d drive with name "screenshot.png"
         FileUtils.copyFile(scrFile, new File("target/" + screenshotName + ".png"));
-        // FileUtils.copyFile(scrFile, new File(screenshotName + ".png"));
     }
 
 
