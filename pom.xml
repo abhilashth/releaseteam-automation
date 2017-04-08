@@ -8,6 +8,13 @@
     <artifactId>releaseTeam</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <sfdcurl>http://login.salesforce.com/</sfdcurl>
+        <sfdcusername></sfdcusername>
+        <sfdcpassword></sfdcpassword>
+        <sfdcstoken></sfdcstoken>
+    </properties>
+
     <!-- Output to jar format -->
     <packaging>jar</packaging>
 
@@ -42,6 +49,12 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
