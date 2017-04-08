@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 
@@ -46,7 +47,8 @@ public class BetaRelease {
 
         loadPropertiesfile();
         getSalesforceConnection();
-        driver = getChromeDriver();
+      //  driver = getChromeDriver();
+        driver = getFirefoxDriver();
         getfd().get(properties.getProperty("sfdcurl"));
         getfd().element(id("username")).waitUntil(30).ifElementIsNotDisplayed().clear().sendKeys(properties.getProperty("sfdcusername"));
         getfd().element(id("password")).clear().sendKeys(properties.getProperty("sfdcpassword"));
@@ -86,7 +88,14 @@ public class BetaRelease {
         PropertyConfigurator.configure(confDir + "/conf/log4j.properties");
     }
 
+    private static WebDriver getFirefoxDriver() {
+        Log.info("Driver is set to Firefox.");
+        driver = new FirefoxDriver();
+        return driver;
+    }
+
     private static WebDriver getChromeDriver() {
+        Log.info("Driver is set to Chrome.");
         String chromeDriverLocation = System.getProperty("webdriver.chrome.driver");
         if (StringUtils.isEmpty(chromeDriverLocation)) {
             throw new IllegalArgumentException("webdriver.chrome.driver property should not be null");
